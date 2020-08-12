@@ -25,7 +25,7 @@ namespace AlexaAPI.Controllers
             FetchUsers objusers = new FetchUsers();
             try
             {
-                //request.DeviceId = "abc";
+                //request.DeviceId = "abc"; 
                 //objusers = objAlexaAuthentication.FetchData("abc");
                 objusers = objAlexaAuthentication.FetchData(request.DeviceId);
 
