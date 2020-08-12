@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="evolutyzlabsuserModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AlexaDevices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceID" Type="nvarchar(max)" />
+          <Property Name="EmployeeID" Type="nvarchar" MaxLength="8" />
+          <Property Name="IsAuthenticated" Type="bit" />
+        </EntityType>
+        <EntityType Name="UsersProfile">
+          <Key>
+            <PropertyRef Name="UsrP_UserProfileID" />
+          </Key>
+          <Property Name="UsrP_UserProfileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsrP_UserID" Type="int" Nullable="false" />
+          <Property Name="UsrP_FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UsrP_LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UsrP_EmployeeID" Type="nvarchar" MaxLength="100" />
+          <Property Name="UsrP_EmailID" Type="nvarchar" MaxLength="100" />
+          <Property Name="Usrp_MobileNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Usrp_PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Usrp_ProfilePicture" Type="nvarchar" MaxLength="200" />
+          <Property Name="UsrP_DOB" Type="datetime" />
+          <Property Name="Usrp_DOJ" Type="datetime" />
+          <Property Name="UsrP_ActiveStatus" Type="bit" Nullable="false" />
+          <Property Name="UsrP_Version" Type="smallint" Nullable="false" />
+          <Property Name="UsrP_CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UsrP_CreatedBy" Type="int" Nullable="false" />
+          <Property Name="UsrP_ModifiedDate" Type="datetime" />
+          <Property Name="UsrP_ModifiedBy" Type="int" />
+          <Property Name="UsrP_isDeleted" Type="bit" Nullable="false" />
+          <Property Name="Usr_Titleid" Type="int" />
+          <Property Name="Usr_GenderId" Type="int" />
+          <Property Name="Marital_Status" Type="varchar" MaxLength="15" />
+          <Property Name="PermanentAddress" Type="varchar" MaxLength="250" />
+          <Property Name="TemporaryAddress" Type="varchar" MaxLength="250" />
+          <Property Name="passcode" Type="int" />
+        </EntityType>
+        <Function Name="AlexaCheckStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="deviceid" Type="varchar" Mode="In" />
+          <Parameter Name="month" Type="int" Mode="In" />
+          <Parameter Name="status" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="AlexaCheckTimeSheetStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="deviceid" Type="varchar" Mode="In" />
+          <Parameter Name="month" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AlexaGetWorkingHoursDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="month" Type="int" Mode="In" />
+          <Parameter Name="deviceid" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="AlexaGetWorkingHoursDetails_JKTest2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="month" Type="int" Mode="In" />
+          <Parameter Name="deviceid" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="AlexaSubmitTimesheetdetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Month" Type="int" Mode="In" />
+          <Parameter Name="deviceid" Type="varchar(max)" Mode="In" />
+          <Parameter Name="timesheetSubmitted" Type="int" Mode="InOut" />
+          <Parameter Name="workinghours" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="AlexaSubmitUserTimesheetdetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Month" Type="int" Mode="In" />
+          <Parameter Name="deviceid" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="AlexaValidateOtp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="deviceid" Type="varchar(max)" Mode="In" />
+          <Parameter Name="pin" Type="int" Mode="In" />
+          <Parameter Name="Message" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="AlexaWakeUp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="deviceid" Type="varchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="evolutyzlabsuserModelStoreContainer">
+          <EntitySet Name="AlexaDevices" EntityType="Self.AlexaDevices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersProfile" EntityType="Self.UsersProfile" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="evolutyzlabsuserModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="evolutyzlabsuserEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="AlexaWakeUp" ReturnType="Collection(evolutyzlabsuserModel.AlexaWakeUp_Result)">
+          <Parameter Name="deviceid" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="UsersProfiles" EntityType="evolutyzlabsuserModel.UsersProfile" />
+          <FunctionImport Name="AlexaValidateOtp">
+            <Parameter Name="deviceid" Mode="In" Type="String" />
+            <Parameter Name="pin" Mode="In" Type="Int32" />
+            <Parameter Name="Message" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AlexaGetWorkingHoursDetails" ReturnType="Collection(String)">
+            <Parameter Name="month" Mode="In" Type="Int32" />
+            <Parameter Name="deviceid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AlexaGetWorkingHoursDetails_JKTest2" ReturnType="Collection(evolutyzlabsuserModel.AlexaGetWorkingHoursDetails_JKTest2_Result)">
+            <Parameter Name="month" Mode="In" Type="Int32" />
+            <Parameter Name="deviceid" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="AlexaDevices" EntityType="evolutyzlabsuserModel.AlexaDevice" />
+          <FunctionImport Name="AlexaSubmitTimesheetdetails">
+            <Parameter Name="Month" Mode="In" Type="Int32" />
+            <Parameter Name="deviceid" Mode="In" Type="String" />
+            <Parameter Name="timesheetSubmitted" Mode="InOut" Type="Int32" />
+            <Parameter Name="workinghours" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AlexaCheckStatus">
+            <Parameter Name="deviceid" Mode="In" Type="String" />
+            <Parameter Name="month" Mode="In" Type="Int32" />
+            <Parameter Name="status" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AlexaCheckTimeSheetStatus">
+            <Parameter Name="deviceid" Mode="In" Type="String" />
+            <Parameter Name="month" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AlexaSubmitUserTimesheetdetails" ReturnType="Collection(evolutyzlabsuserModel.AlexaSubmitUserTimesheetdetails_Result)">
+            <Parameter Name="Month" Mode="In" Type="Int32" />
+            <Parameter Name="deviceid" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="AlexaWakeUp_Result">
+          <Property Type="String" Name="UsrP_FirstName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="UsrP_LastName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Usrp_MobileNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Titleprefix" Nullable="true" MaxLength="3" />
+        </ComplexType>
+        <EntityType Name="UsersProfile">
+          <Key>
+            <PropertyRef Name="UsrP_UserProfileID" />
+          </Key>
+          <Property Name="UsrP_UserProfileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsrP_UserID" Type="Int32" Nullable="false" />
+          <Property Name="UsrP_FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UsrP_LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UsrP_EmployeeID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UsrP_EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Usrp_MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Usrp_PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Usrp_ProfilePicture" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UsrP_DOB" Type="DateTime" Precision="3" />
+          <Property Name="Usrp_DOJ" Type="DateTime" Precision="3" />
+          <Property Name="UsrP_ActiveStatus" Type="Boolean" Nullable="false" />
+          <Property Name="UsrP_Version" Type="Int16" Nullable="false" />
+          <Property Name="UsrP_CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UsrP_CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="UsrP_ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="UsrP_ModifiedBy" Type="Int32" />
+          <Property Name="UsrP_isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Usr_Titleid" Type="Int32" />
+          <Property Name="Usr_GenderId" Type="Int32" />
+          <Property Name="Marital_Status" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PermanentAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TemporaryAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="passcode" Type="Int32" />
+        </EntityType>
+        <ComplexType Name="AlexaGetWorkingHoursDetails_JKTest2_Result">
+          <Property Type="String" Name="EmployeeId" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Userid" Nullable="true" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="HolidaysCount" Nullable="true" />
+          <Property Type="Int32" Name="WorkingDays" Nullable="true" />
+          <Property Type="Int32" Name="WorkingHours" Nullable="true" />
+          <Property Type="String" Name="Timesheetmonth" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <EntityType Name="AlexaDevice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="IsAuthenticated" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="AlexaSubmitUserTimesheetdetails_Result">
+          <Property Type="Int32" Name="Column1" Nullable="true" />
+          <Property Type="Int32" Name="Column2" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="evolutyzlabsuserModelStoreContainer" CdmEntityContainer="evolutyzlabsuserEntities" >
+          <FunctionImportMapping FunctionImportName="AlexaWakeUp" FunctionName="evolutyzlabsuserModel.Store.AlexaWakeUp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="evolutyzlabsuserModel.AlexaWakeUp_Result">
+                <ScalarProperty Name="UsrP_FirstName" ColumnName="UsrP_FirstName" />
+                <ScalarProperty Name="UsrP_LastName" ColumnName="UsrP_LastName" />
+                <ScalarProperty Name="Usrp_MobileNumber" ColumnName="Usrp_MobileNumber" />
+                <ScalarProperty Name="Titleprefix" ColumnName="Titleprefix" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="UsersProfiles">
+            <EntityTypeMapping TypeName="evolutyzlabsuserModel.UsersProfile">
+              <MappingFragment StoreEntitySet="UsersProfile">
+                <ScalarProperty Name="passcode" ColumnName="passcode" />
+                <ScalarProperty Name="TemporaryAddress" ColumnName="TemporaryAddress" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+                <ScalarProperty Name="Marital_Status" ColumnName="Marital_Status" />
+                <ScalarProperty Name="Usr_GenderId" ColumnName="Usr_GenderId" />
+                <ScalarProperty Name="Usr_Titleid" ColumnName="Usr_Titleid" />
+                <ScalarProperty Name="UsrP_isDeleted" ColumnName="UsrP_isDeleted" />
+                <ScalarProperty Name="UsrP_ModifiedBy" ColumnName="UsrP_ModifiedBy" />
+                <ScalarProperty Name="UsrP_ModifiedDate" ColumnName="UsrP_ModifiedDate" />
+                <ScalarProperty Name="UsrP_CreatedBy" ColumnName="UsrP_CreatedBy" />
+                <ScalarProperty Name="UsrP_CreatedDate" ColumnName="UsrP_CreatedDate" />
+                <ScalarProperty Name="UsrP_Version" ColumnName="UsrP_Version" />
+                <ScalarProperty Name="UsrP_ActiveStatus" ColumnName="UsrP_ActiveStatus" />
+                <ScalarProperty Name="Usrp_DOJ" ColumnName="Usrp_DOJ" />
+                <ScalarProperty Name="UsrP_DOB" ColumnName="UsrP_DOB" />
+                <ScalarProperty Name="Usrp_ProfilePicture" ColumnName="Usrp_ProfilePicture" />
+                <ScalarProperty Name="Usrp_PhoneNumber" ColumnName="Usrp_PhoneNumber" />
+                <ScalarProperty Name="Usrp_MobileNumber" ColumnName="Usrp_MobileNumber" />
+                <ScalarProperty Name="UsrP_EmailID" ColumnName="UsrP_EmailID" />
+                <ScalarProperty Name="UsrP_EmployeeID" ColumnName="UsrP_EmployeeID" />
+                <ScalarProperty Name="UsrP_LastName" ColumnName="UsrP_LastName" />
+                <ScalarProperty Name="UsrP_FirstName" ColumnName="UsrP_FirstName" />
+                <ScalarProperty Name="UsrP_UserID" ColumnName="UsrP_UserID" />
+                <ScalarProperty Name="UsrP_UserProfileID" ColumnName="UsrP_UserProfileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AlexaValidateOtp" FunctionName="evolutyzlabsuserModel.Store.AlexaValidateOtp" />
+          <FunctionImportMapping FunctionImportName="AlexaGetWorkingHoursDetails" FunctionName="evolutyzlabsuserModel.Store.AlexaGetWorkingHoursDetails" />
+          <FunctionImportMapping FunctionImportName="AlexaGetWorkingHoursDetails_JKTest2" FunctionName="evolutyzlabsuserModel.Store.AlexaGetWorkingHoursDetails_JKTest2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="evolutyzlabsuserModel.AlexaGetWorkingHoursDetails_JKTest2_Result">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="HolidaysCount" ColumnName="HolidaysCount" />
+                <ScalarProperty Name="WorkingDays" ColumnName="WorkingDays" />
+                <ScalarProperty Name="WorkingHours" ColumnName="WorkingHours" />
+                <ScalarProperty Name="Timesheetmonth" ColumnName="Timesheetmonth" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="AlexaDevices">
+            <EntityTypeMapping TypeName="evolutyzlabsuserModel.AlexaDevice">
+              <MappingFragment StoreEntitySet="AlexaDevices">
+                <ScalarProperty Name="IsAuthenticated" ColumnName="IsAuthenticated" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AlexaSubmitTimesheetdetails" FunctionName="evolutyzlabsuserModel.Store.AlexaSubmitTimesheetdetails" />
+          <FunctionImportMapping FunctionImportName="AlexaCheckStatus" FunctionName="evolutyzlabsuserModel.Store.AlexaCheckStatus" />
+          <FunctionImportMapping FunctionImportName="AlexaCheckTimeSheetStatus" FunctionName="evolutyzlabsuserModel.Store.AlexaCheckTimeSheetStatus" />
+          <FunctionImportMapping FunctionImportName="AlexaSubmitUserTimesheetdetails" FunctionName="evolutyzlabsuserModel.Store.AlexaSubmitUserTimesheetdetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="evolutyzlabsuserModel.AlexaSubmitUserTimesheetdetails_Result">
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
